@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+
+    environment:
+      - POSTGRES_DB=data
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=C!y2D#ku=hs6R3qZ
+
+  web:
+    build:
+      .
+    command: python my_blog/manage.py runserver 0.0.0.0:2002
+    volumes:
+      - .:/blog_site
+    ports:
+      - "2002:2002"
+    depends_on:
+      - db
